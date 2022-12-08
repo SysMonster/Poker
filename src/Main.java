@@ -1,22 +1,30 @@
 import java.util.List;
-import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
 
         System.out.println("Start Spiel");
-        System.out.print("Generiere Hand 1: ");
+        System.out.println("Generiere Hand 1: ");
 
         CardUtils cardUtils = new CardUtils();
 
-        Map<String, List<Card>> hands = cardUtils.createHands();
-        final List<Card> firstHand = hands.get("firstHand");
-        final List<Card> secondHand = hands.get("secondHand");
+        cardUtils.createHands();
+        final List<Card> firstHand = CardUtils.firstHand;
+        final List<Card> secondHand = CardUtils.secondHand;
 
-        System.out.print("Generiere Hand 2: ");
+//        System.out.print("Generiere Hand 2: ");
 
-        System.out.println("Die Karte hat das Symbol " + firstHand.get(0).getSuit());
-        System.out.println("Die Karte hat den Wert " + firstHand.get(0).getValue());
+        int i = 0;
+        for(Card card : firstHand){
+            System.out.println("Die Karte " + ++i + " hat das Symbol " + card.getSuit());
+            System.out.println("Die Karte " + i + " hat den Wert " + card.getValue());
+        }
+        System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        int j = 0;
+        for(Card card : secondHand){
+            System.out.println("Die Karte " + ++j + " hat das Symbol " + card.getSuit());
+            System.out.println("Die Karte " + j + " hat den Wert " + card.getValue());
+        }
     }
 }

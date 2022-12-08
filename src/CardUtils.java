@@ -1,32 +1,56 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CardUtils {
+
+    public static List<Card> firstHand = new ArrayList<Card>();
+    public static List<Card> secondHand = new ArrayList<Card>();
 
     /**
      * Creates two hands with different cards and returns
      * @return
      */
-    public Map<String, List<Card>> createHands (){
-        List<Card> firstHand = new ArrayList<Card>();
-        List<Card> secondHand = new ArrayList<Card>();
+    public void createHands (){
+        for (int i = 0; i<5; i++){
 
-        firstHand.add(new Card(Card.CardSuit.values()[getRandomInteger(0,3)], Card.CardValue.values()[getRandomInteger(0,12)]));
+            Card newCardForFirstHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+            while (!checkIfCardIsValid(newCardForFirstHand)){
+                newCardForFirstHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+            }
+            firstHand.add(newCardForFirstHand);
 
-        Map<String, List<Card>> returnValue = new HashMap<String, List<Card>>();
-        returnValue.put("firstHand", firstHand);
-        returnValue.put("secondHand", secondHand);
-
-        return returnValue;
+            Card newCardForSecondHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+            while (!checkIfCardIsValid(newCardForSecondHand)){
+                newCardForSecondHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+            }
+            secondHand.add(newCardForSecondHand);
+        }
     }
 
     /**
      * A card can only used once with the same value and suit
       */
-    public void checkIfCardIsValid(Card card){
+    public boolean checkIfCardIsValid(final Card card){
+        Card possibleCardFirstHand = firstHand.stream()
+                .filter(c -> c.getValue() == card.getValue())
+                .filter(c -> c.getSuit() == card.getSuit())
+                .findAny()
+                .orElse(null);
 
+        Card possibleCardSecondHand = secondHand.stream()
+                .filter(c -> c.getValue() == card.getValue())
+                .filter(c -> c.getSuit() == card.getSuit())
+                .findAny()
+                .orElse(null);
+
+        // The new card is either found in firstHand nor in secondHand. That's good
+        if(possibleCardFirstHand == null && possibleCardSecondHand == null){
+            return true;
+        }
+
+        //Card already exists in one hand
+        System.out.println("FOUND CARD "  + card.getSuit() + " " + card.getValue() + ". Need another one!");
+        return false;
     }
 
     /**
