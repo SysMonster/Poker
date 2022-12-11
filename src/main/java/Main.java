@@ -12,28 +12,34 @@ public class Main {
         CardResult cardResult = new CardResult();
 
         cardUtils.createHands();
-        final List<Card> firstHand = CardUtils.firstHand;
-        final List<Card> secondHand = CardUtils.secondHand;
+
+        Hand firstHand = new Hand();
+        Hand secondHand = new Hand();
+
+        firstHand.setHand(CardUtils.firstHand);
+        secondHand.setHand(CardUtils.secondHand);
+//        final List<Card> firstHand = CardUtils.firstHand;
+//        final List<Card> secondHand = CardUtils.secondHand;
 
         CardResult.ResultValue resultOfFirstHand = cardResult.getResult(firstHand);
         CardResult.ResultValue resultOfSecondHand = cardResult.getResult(secondHand);
 
+        System.out.println("Spieler 1 hat die Karten: ");
         int i = 0;
-        for(Card card : firstHand){
-            System.out.println("Die Karte " + ++i + " hat das Symbol " + card.getSuit());
-            System.out.println("Die Karte " + i + " hat den Wert " + card.getValue());
+        for(Card card : firstHand.getHand()){
+            System.out.println("Die Karte " + ++i + " ist " + card.getSuit() + " " + card.getValue());
         }
 
-        System.out.println("Die erste Hand ist ein " + resultOfFirstHand);
+        System.out.println("Der Spieler hat: " + resultOfFirstHand);
 
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        System.out.println("Spieler 2 hat die Karten: ");
         int j = 0;
-        for(Card card : secondHand){
-            System.out.println("Die Karte " + ++j + " hat das Symbol " + card.getSuit());
-            System.out.println("Die Karte " + j + " hat den Wert " + card.getValue());
+        for(Card card : secondHand.getHand()){
+            System.out.println("Die Karte " + ++j + " ist " + card.getSuit() + " " + card.getValue());
         }
 
-        System.out.println("Die erste Hand ist ein " + resultOfSecondHand);
+        System.out.println("Der Spieler hat: " + resultOfSecondHand);
 
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
@@ -46,7 +52,21 @@ public class Main {
         }
         //If results are same then check second condition
         else{
-            cardResult.compareResults(resultOfFirstHand,resultOfSecondHand);
+            int compareResult = cardResult.compareResults(resultOfFirstHand, firstHand, secondHand);
+            switch (compareResult){
+                case 1:
+                    System.out.println("Gewonnen hat SPIELER 1");
+                    break;
+                case 2:
+                    System.out.println("Gewonnen hat SPIELER 2");
+                    break;
+                case 0:
+                    System.out.println("Unentschieden!");
+                    break;
+                default:
+                    System.out.println("Fehler");
+            }
+
         }
     }
 }

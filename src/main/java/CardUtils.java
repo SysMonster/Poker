@@ -1,12 +1,14 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CardUtils {
 
-    public static List<Card> firstHand = new ArrayList<Card>();
-    public static List<Card> secondHand = new ArrayList<Card>();
+    public static List<Card> firstHand = new ArrayList<>();
+    public static List<Card> secondHand = new ArrayList<>();
 
 
     /**
@@ -28,6 +30,15 @@ public class CardUtils {
             }
             secondHand.add(newCardForSecondHand);
         }
+
+        firstHand = firstHand.stream()
+                .sorted(Comparator.comparing(Card::getValue))
+                .collect(Collectors.toList());
+
+        secondHand = secondHand.stream()
+                .sorted(Comparator.comparing(Card::getValue))
+                .collect(Collectors.toList());
+
     }
 
     /**
