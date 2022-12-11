@@ -63,7 +63,6 @@ public class CardUtils {
         }
 
         //main.java.Card already exists in one hand
-        System.out.println("FOUND CARD "  + card.getSuit() + " " + card.getValue() + ". Need another one!");
         return false;
     }
 

@@ -1,7 +1,5 @@
 package main.java;
 
-import java.util.List;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -18,8 +16,6 @@ public class Main {
 
         firstHand.setHand(CardUtils.firstHand);
         secondHand.setHand(CardUtils.secondHand);
-//        final List<Card> firstHand = CardUtils.firstHand;
-//        final List<Card> secondHand = CardUtils.secondHand;
 
         CardResult.ResultValue resultOfFirstHand = cardResult.getResult(firstHand);
         CardResult.ResultValue resultOfSecondHand = cardResult.getResult(secondHand);
@@ -66,7 +62,6 @@ public class Main {
                 default:
                     System.out.println("Fehler");
             }
-
         }
     }
 }

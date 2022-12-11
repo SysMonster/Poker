@@ -3,9 +3,6 @@ package main.java;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static main.java.CardUtils.firstHand;
-import static main.java.CardUtils.secondHand;
-
 public class CardResult {
 
     public enum ResultValue {
