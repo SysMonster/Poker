@@ -18,15 +18,15 @@ public class CardUtils {
     public void createHands (){
         for (int i = 0; i<5; i++){
 
-            Card newCardForFirstHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+            Card newCardForFirstHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 13)]);
             while (!checkIfCardIsValid(newCardForFirstHand)){
-                newCardForFirstHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+                newCardForFirstHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 13)]);
             }
             firstHand.add(newCardForFirstHand);
 
-            Card newCardForSecondHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+            Card newCardForSecondHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 13)]);
             while (!checkIfCardIsValid(newCardForSecondHand)){
-                newCardForSecondHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 12)]);
+                newCardForSecondHand = new Card(Card.CardSuit.values()[getRandomInteger(0, 3)], Card.CardValue.values()[getRandomInteger(0, 13)]);
             }
             secondHand.add(newCardForSecondHand);
         }
